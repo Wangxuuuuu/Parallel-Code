@@ -3,20 +3,20 @@
 #include<cmath>
 using namespace std;
 int main(){
-    int mi=10;
+    int mi=1;
     int step=1;
-    for(mi=10;mi<=20;mi+=step){
+    for(mi=1;mi<=20;mi+=step){
         // if(mi==10) step=1;
         int N=pow(2,mi);
         int counter=0;
         double elapsedmseconds=0;
-        while(counter<500){//Ã¿¸öNÖØ¸´500´Î¼ÆÊ±£¬ÇóÆ½¾ùÖµ£¬´ïµ½¾«×¼¼ÆÊ±
+        while(counter<500){//æ¯ä¸ªNé‡å¤500æ¬¡è®¡æ—¶ï¼Œæ±‚å¹³å‡å€¼ï¼Œè¾¾åˆ°ç²¾å‡†è®¡æ—¶
             counter++;
             int* a=new int[N]{};
             for(int i=0;i<N;i++){
                 a[i]=i;
-            }//¶¨ÒåºÃÔªËØÊı×éa
-            int sum=0;//½á¹ûÎªsum
+            }//å®šä¹‰å¥½å…ƒç´ æ•°ç»„a
+            int sum=0;//ç»“æœä¸ºsum
 
             LARGE_INTEGER frequency;
             QueryPerformanceFrequency(&frequency);
@@ -27,14 +27,14 @@ int main(){
                 for(int i=0;i<m/2;i++){
                     a[i]=a[2*i]+a[2*i+1];
                 }
-            }//²ÉÓÃÓÅ»¯Ëã·¨¶şÖØÑ­»·ÊµÏÖµİ¹é
-            sum=a[0];//a[0]Îª×îÖÕ½á¹û
+            }//é‡‡ç”¨ä¼˜åŒ–ç®—æ³•äºŒé‡å¾ªç¯å®ç°é€’å½’
+            sum=a[0];//a[0]ä¸ºæœ€ç»ˆç»“æœ
 
             LARGE_INTEGER endcount;
             QueryPerformanceCounter(&endcount);
             elapsedmseconds+=1000*(double)(endcount.QuadPart-startcount.QuadPart)/(double)frequency.QuadPart;
         }
-        cout<<"N: "<<N<<" Ê±¼ä: "<<elapsedmseconds/counter<<" ms "<<endl;
+        cout<<"N: "<<N<<" æ—¶é—´: "<<elapsedmseconds/counter<<" ms "<<endl;
     }
     return 0;
 }
