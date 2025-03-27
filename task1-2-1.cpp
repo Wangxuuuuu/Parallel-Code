@@ -3,20 +3,20 @@
 #include<cmath>
 using namespace std;
 int main(){
-    int mi=10;
+    int mi=1;
     int step=1;
-    for(mi=10;mi<=20;mi+=step){
+    for(mi=1;mi<=20;mi+=step){
         // if(mi==10) step=1;
         int N=pow(2,mi);
         int counter=0;
         double elapsedmseconds=0;
-        while(counter<500){//每个N重复500次计时，求平均值，达到精准计时
+        while(counter<500){//姣忎釜N閲嶅500娆¤鏃讹紝姹傚钩鍧囧�硷紝杈惧埌绮惧噯璁℃椂
             counter++;
             int* a=new int[N]{};
             for(int i=0;i<N;i++){
                 a[i]=i;
-            }//定义好元素数组a
-            int sum=0;//结果为sum
+            }//瀹氫箟濂藉厓绱犳暟缁刟
+            int sum=0;//缁撴灉涓簊um
 
             LARGE_INTEGER frequency;
             QueryPerformanceFrequency(&frequency);
@@ -25,13 +25,13 @@ int main(){
 
             for(int i=0;i<N;i++){
                 sum+=a[i];
-            }//直接采用平凡算法链式相加
+            }//鐩存帴閲囩敤骞冲嚒绠楁硶閾惧紡鐩稿姞
 
             LARGE_INTEGER endcount;
             QueryPerformanceCounter(&endcount);
             elapsedmseconds+=1000*(double)(endcount.QuadPart-startcount.QuadPart)/(double)frequency.QuadPart;
         }
-        cout<<"N: "<<N<<" 时间: "<<elapsedmseconds/counter<<" ms "<<endl;
+        cout<<"N: "<<N<<" 鏃堕棿: "<<elapsedmseconds/counter<<" ms "<<endl;
     }
     return 0;
 }
