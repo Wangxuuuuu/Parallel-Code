@@ -20,6 +20,7 @@ int main()
     PriorityQueue q;
     auto start_train = system_clock::now();
     q.m.train("./input/Rockyou-singleLined-full.txt");
+    //q.m.train("/guessdata/Rockyou-singleLined-full.txt");
     q.m.order();
     auto end_train = system_clock::now();
     auto duration_train = duration_cast<microseconds>(end_train - start_train);
