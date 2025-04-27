@@ -1,0 +1,87 @@
+#include<iostream>
+#include<windows.h>
+using namespace std;
+int main(){
+    int N=10;int step=10;
+    for(int N=10;N<=1000;N+=step){
+        if(N==100) step=100;
+        int counter=0;
+        double elapsedmseconds=0;;
+        while(counter<500){//每个N重复500次计时，求平均值，达到精准计时
+            counter++;
+            int** M=new int*[N]{};
+            for(int i=0;i<N;i++){
+                M[i]=new int[N]{};
+            }
+            for(int i=0;i<N;i++){
+                for(int j=0;j<N;j++){
+                    M[i][j]=i+j;
+                }
+            }//定义好矩阵M[N][N]
+            int* a=new int[N];
+            for(int i=0;i<N;i++){
+                a[i]=i;
+            }//定义好相乘的向量a
+            int* sum=new int[N]{};//初始化最终sum内积数组
+
+            LARGE_INTEGER frequency;
+            QueryPerformanceFrequency(&frequency);
+            LARGE_INTEGER startcount;
+            QueryPerformanceCounter(&startcount);
+
+            for(int i=0;i<N;i++){//采取cache算法
+                for(int j=0;j<N;j++){
+                    sum[j]+=M[i][j]*a[i];
+                }
+            }
+
+            LARGE_INTEGER endcount;
+            QueryPerformanceCounter(&endcount);
+            elapsedmseconds+=1000*(double)(endcount.QuadPart-startcount.QuadPart)/(double)frequency.QuadPart;
+        }
+        cout<<"N: "<<N<<" 时间: "<<elapsedmseconds/counter<<" ms "<<endl;
+    }
+    return 0;
+}
+
+
+// #include<iostream>
+// using namespace std;
+// int main(){
+//     clock_t startcount,endcount;
+//     int N=10;int step=10;
+//     long counter=0;
+//     for(int N=10;N<=1000;N+=step){
+//     if(N==100) step=100;
+//     startcount=clock(); counter=0;
+//     while((clock()-startcount)/(double)CLOCKS_PER_SEC<0.1){//总时间<0.1s
+//         counter++;
+//     int** M=new int*[N]{};
+//     for(int i=0;i<N;i++){
+//         M[i]=new int[N]{};
+//     }
+//     for(int i=0;i<N;i++){
+//         for(int j=0;j<N;j++){
+//             M[i][j]=i+j;
+//         }
+//     }//定义好矩阵M[N][N]
+//     int* a=new int[N];
+//     for(int i=0;i<N;i++){
+//         a[i]=i;
+//     }//定义好相乘的向量a
+//     int* sum=new int[N]{};//初始化最终sum内积数组
+
+    
+//     for(int i=0;i<N;i++){//采取cache算法
+//         for(int j=0;j<N;j++){
+//             sum[j]+=M[i][j]*a[i];
+//         }
+//     }
+// }
+
+//     endcount=clock();
+//     double micorseconds=1000*(double)(endcount-startcount)/double(CLOCKS_PER_SEC);
+//     cout<<"N: "<<N<<" 循环次数 "<<counter<<" 总时间 "<<micorseconds<<" ms "<<" 平均每次时间 "<<micorseconds/counter<<" ms "<<endl;
+// }
+//     return 0;
+// }
