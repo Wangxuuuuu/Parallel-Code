@@ -72,7 +72,7 @@ static inline uint32x4_t ROTATELEFT(uint32x4_t num, const int n) {
 
 static inline void FF(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, uint32x4_t x, const int s, uint32x4_t ac) {
   // F(b, c, d)
-  uint32x4_t f = vorrq_u32(vandq_u32(b, c), vandq_u32(vmvnq_u32(b), d));
+  uint32x4_t f = F(b,c,d);
   
   // a += F(b, c, d) + x + ac
   a = vaddq_u32(a, f);
@@ -88,7 +88,7 @@ static inline void FF(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, u
 
 static inline void GG(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, uint32x4_t x, const int s, uint32x4_t ac) {
   // G(b, c, d)
-  uint32x4_t g = vorrq_u32(vandq_u32(b, d), vandq_u32(c, vmvnq_u32(d)));
+  uint32x4_t g = G(b, c, d);
   
   // a += G(b, c, d) + x + ac
   a = vaddq_u32(a, g);
@@ -104,7 +104,7 @@ static inline void GG(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, u
 
 static inline void HH(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, uint32x4_t x, const int s, uint32x4_t ac) {
   // H(b, c, d) = b ^ c ^ d
-  uint32x4_t h = veorq_u32(veorq_u32(b, c), d);
+  uint32x4_t h = H(b, c, d);
   
   // a += H(b, c, d) + x + ac
   a = vaddq_u32(a, h);
@@ -120,7 +120,7 @@ static inline void HH(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, u
 
 static inline void II(uint32x4_t &a, uint32x4_t b, uint32x4_t c, uint32x4_t d, uint32x4_t x, const int s, uint32x4_t ac) {
   // I(b, c, d) = c ^ (b | ~d)
-  uint32x4_t i = veorq_u32(c, vorrq_u32(b, vmvnq_u32(d)));
+  uint32x4_t i = I(b, c, d);
   
   // a += I(b, c, d) + x + ac
   a = vaddq_u32(a, i);
