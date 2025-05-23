@@ -271,31 +271,3 @@ void PriorityQueue::Generate(PT pt)
         }
     }
 }
-
-
-
-//         int total = pt.max_indices[pt.content.size() - 1];
-//         int num_threads = std::min((int)std::thread::hardware_concurrency(), total);
-//         int block_size = (total + num_threads - 1) / num_threads;
-
-//         std::vector<std::vector<std::string>> local_results(num_threads);
-//         ThreadPool pool(num_threads);
-
-//         for (int t = 0; t < num_threads; ++t) {
-//             int start = t * block_size;
-//             int end = std::min(start + block_size, total);
-//             int thread_id = t;
-
-//             pool.enqueue([=, &local_results] {
-//                 for (int i = start; i < end; ++i) {
-//                     local_results[thread_id].emplace_back(guess + a->ordered_values[i]);
-//                 }
-//             });
-//         }
-
-//         pool.wait_all();
-
-//         for (const auto& vec : local_results) {
-//             guesses.insert(guesses.end(), vec.begin(), vec.end());
-//         }
-//         total_guesses = guesses.size();
