@@ -36,7 +36,7 @@ int main()
     {
         q.PopNext();
         q.total_guesses = q.guesses.size();
-        if (q.total_guesses - curr_num >= 150000)
+        if (q.total_guesses - curr_num >= 100000)
         {
             cout << "Guesses generated: " <<history + q.total_guesses << endl;
             curr_num = q.total_guesses;
