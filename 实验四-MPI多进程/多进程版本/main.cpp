@@ -133,12 +133,10 @@ int main(int argc, char** argv)
         auto duration = duration_cast<microseconds>(end - start);
         time_guess = double(duration.count()) * microseconds::period::num / microseconds::period::den;
         
-        cout << "================ FINAL STATISTICS ================" << endl;
         cout << "Total guesses generated: " << history << endl;
         cout << "Guess time:" << time_guess - time_hash << "seconds"<< endl;
         cout << "Hash time:" << time_hash << "seconds"<<endl;
         cout << "Train time:" << time_train <<"seconds"<<endl;
-        cout << "====================================================" << endl;
     }
     
     MPI_Finalize();
