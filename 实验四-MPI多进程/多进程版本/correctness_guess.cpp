@@ -156,10 +156,10 @@ int main(int argc, char** argv)
         time_guess = double(duration.count()) * microseconds::period::num / microseconds::period::den;
         
         cout << "Total guesses generated: " << history << endl;
-        cout << "Cracked: " << cracked << endl;
         cout << "Guess time: " << time_guess - time_hash << " seconds" << endl;
         cout << "Hash time: " << time_hash << " seconds" << endl;
         cout << "Train time: " << time_train << " seconds" << endl;
+        cout << "Cracked: " << cracked << endl;
     }
     
     MPI_Finalize();
