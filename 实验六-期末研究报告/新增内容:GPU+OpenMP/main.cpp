@@ -9,6 +9,7 @@ using namespace chrono;
 // 编译指令如下
 // nvcc main.cpp train.cpp guessing.cpp md5.cpp cuda_generate.cu -std=c++11 -Xcompiler="-fopenmp" -o test.exe -O2 
 // nvcc main.cpp train.cpp guessing.cpp md5.cpp cuda_generate.cu -std=c++11 -o test.exe -O2
+// nvcc main.cpp train.cpp guessing.cpp md5.cpp cuda_generate.cu -std=c++11 -o test.exe -O2 -Xcompiler -fopenmp
 
 int main()
 {
